@@ -53,7 +53,7 @@ function Card({type, amount}){
         <P>BALANCE</P>
         
         <AmountText>
-            <SecundaryAmount fontSize='35px'>{displayedAmount}</SecundaryAmount>
+            <SecundaryAmount fontSize='30px'>{displayedAmount}</SecundaryAmount>
         </AmountText>
 
         

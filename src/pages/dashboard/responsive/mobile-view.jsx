@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import Card from '../../../components/card'
 import PlusButton from '../../../components/add-button/add-button'
 import CustomTransactions from '../../../components/custom-transactions'
+import CustomBankAccount from '../../../components/custom-bank-account'
 
 const Container = styled.div`
     padding: 1em;
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 1.5em;
 `
 
 const SectionHeader = styled.div`
@@ -31,6 +32,14 @@ const SeeMore = styled.div`
     }
 `
 
+const HorizontableScroll = styled.div`
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1em;
+    overflowX: auto;
+    overflow: scroll;
+`
+
 const SectionWithTitle = ({title, children})=>{
     return (
         <>  
@@ -44,23 +53,37 @@ const SectionWithTitle = ({title, children})=>{
 }
 
 function DashboardMobile({state}) {
-    let {moneyAvailable, BankAccountsArray, latestTransactionsArray} = state 
-    console.log(state)
+    let {moneyAvailable, 
+        BankAccountsArray, 
+        latestTransactionsArray, 
+        handleClickTransaction, 
+        handleClickBankAccount} = state 
+
     return (
         <Container>
             <Card type='primary' amount={moneyAvailable}/>
             <SectionWithTitle title='BANK ACCOUNTS'>
+                <HorizontableScroll>
                 {
-                    BankAccountsArray.map( ({name}, id)=>(
-                        <p key={id}>{name}</p>
+                    BankAccountsArray.map( (bankAccountData, id)=>(
+                        <CustomBankAccount 
+                            key={id} 
+                            animationDelay={id} 
+                            handleClickBankAccount={handleClickBankAccount}
+                            {...bankAccountData}/>
                     ))
                 }
+                </HorizontableScroll>
             </SectionWithTitle>
 
             <SectionWithTitle title='TRANSACTIONS'>
                 {
                     latestTransactionsArray.map( (transactionData, id)=>(
-                        <CustomTransactions key={id} {...transactionData}/>
+                        <CustomTransactions 
+                            key={id} 
+                            animationDelay={id} 
+                            handleClickTransaction={handleClickTransaction} 
+                            {...transactionData}/>
                     ))
                 }
             </SectionWithTitle>

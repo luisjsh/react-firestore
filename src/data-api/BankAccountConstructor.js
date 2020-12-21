@@ -167,7 +167,7 @@ export default function BankAccount (currentUser){
     let latestTransactionsArray = []
 
     await db.collection("latestTransactions")
-    .orderBy('addedAt')
+    .orderBy('addedAt', 'desc')
     .where("userId", "==", currentUser)
     .limit(4)
     .get()
@@ -206,8 +206,25 @@ export default function BankAccount (currentUser){
       dashboardData = "error"
     }
   
-    console.log()
-
     return dashboardData
+  }
+
+  this.getTransaction = async (bankAccount, subject)=>{
+    let transactionData = false
+
+    try{
+      await db.collection("bankAccount")
+      .doc(bankAccount)
+      .collection('transactions')
+      .doc(subject)
+      .get()
+      .then(function(querySnapshot) {
+        transactionData = querySnapshot.data()
+      })
+    }catch(e){
+      console.log(e)
+      transactionData = 'error'
+    }
+    return transactionData
   }
 } 

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Button = styled.button`
-    padding: 1em 4em;
+    padding: ${props => props.padding ? props.padding : '1em 4em'};
     font-weight: bold;
     font-size: 1em;
     border-radius: 8px;
@@ -56,6 +56,17 @@ const Button = styled.button`
                 }
             `
 
+        case 'warning': 
+            return `
+                color: white; 
+                background: #FC2B2B;
+                border:1px solid #FC2B2B;
+                
+                &:hover, &:focus-within{
+                    color: white; 
+                    background: #FC2B2B;
+                }
+            `    
 
         default: 
             return ` 

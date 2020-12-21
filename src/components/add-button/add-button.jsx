@@ -88,7 +88,8 @@ const Square = styled.div`
 
             case 'withdraw':
                 return `
-                
+                    background-color: #F6E7D9;
+                    background-image: url(${WithdrawIcon});
                 `
             
                 default: 

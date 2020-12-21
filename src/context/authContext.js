@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 
+import LoadingPage from '../components/loading/loading'
+
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -56,7 +58,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading ? children : 'loading'}
+      {!loading ? children : <LoadingPage />}
     </AuthContext.Provider>
   )
 }

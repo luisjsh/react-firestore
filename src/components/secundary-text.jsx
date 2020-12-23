@@ -7,7 +7,7 @@ const SecundaryTitle = styled.h3`
   margin: 0;
 `
 
-const P = styled.p`
+const P = styled.div`
   font-size: 1.3em;
   margin-left: 3px;
   font-weight: bold;
@@ -15,10 +15,11 @@ const P = styled.p`
   margin: 0;
 `
 
+
 function SecundaryText({children, title}){
     return (
-      <div style={{display: 'flex', alignItems: 'center'}}>
-        <SecundaryTitle>{title}</SecundaryTitle>
+      <div style={{display: 'flex', alignItems: 'center', gap: '.4em'}}>
+        {title && <SecundaryTitle>{title}</SecundaryTitle>}
         <P>{children}</P>
       </div>
     )

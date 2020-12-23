@@ -15,13 +15,13 @@ const Wrapper = styled.div`
 `
 
 
-function ConfirmationCard({handleClick}) {
+function ConfirmationCard({handleClick, handleSubmit}) {
     return (
         <Modal handleClick={handleClick}>
             <Wrapper>
                 ¿Are you sure?
                 <CustomButton padding='.4em 4em' type='warning' handleClick={handleClick}>Cancel</CustomButton>
-                <CustomButton padding='.4em 4em'>Save</CustomButton>
+                <CustomButton padding='.4em 4em' handleClick={handleSubmit}>Delete</CustomButton>
             </Wrapper>
         </Modal>
     )

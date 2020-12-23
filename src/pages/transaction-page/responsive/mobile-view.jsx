@@ -1,7 +1,9 @@
 import {useState} from 'react'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 import usdFormat from '../../../helpers/numberSplitter'
+
+import LoadingIcon from '../../../components/loading/loading-animation.svg'
 
 import ConfirmationCard from '../../../components/confirmation-card'
 import Square from '../../../components/add-button/add-button'
@@ -9,6 +11,16 @@ import CustomButton from '../../../components/custom-button'
 import SecundaryText from '../../../components/secundary-text'
 import {SquareBankAccount} from '../../../components/custom-bank-account'
 import {AmountText} from '../../../components/custom-transactions'
+
+const Appear = keyframes`
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+`
 
 const Container = styled.div`
     display: grid;    
@@ -30,9 +42,22 @@ const Label = styled.p`
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
+    opacity: 0;
+    animation: 1s ${Appear} forwards;
 `
 
-const Title = ({title, children}) =>{
+export const LoadingSection = styled.div`
+    padding: 1em;
+    background-image: url(${LoadingIcon});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    height: 200px;
+    opacity: 0;
+    animation: 1s ${Appear} forwards;
+`
+
+export const Title = ({title, children}) =>{
     return <>
         <SectionHeader>
             <Label>{title ? title : ''}</Label>
@@ -49,18 +74,26 @@ function MobileView({state}) {
         date,
         moneySpent,
         subject,
-        type} = state
+        type,
+        handleDelete } = state
     
 
-    if(state === {})return(
-        <div>
-            loading
-        </div>
+    if(!date || !moneySpent || !subject || !type)return(
+        <Container>
+            <Title title='Transaction'>
+                <LoadingSection />
+            </Title>
+            <Title title='Bank account'>
+                <LoadingSection />
+            </Title>  
+        </Container>
     ) 
 
     if(state !== {}) return (
         <Container>
-            {confirmation && <ConfirmationCard handleClick={()=>setConfirmation(false)}/>}
+            {confirmation && <ConfirmationCard 
+                handleClick={()=>setConfirmation(false)}
+                handleSubmit={()=>handleDelete(bankAccountName, subject, moneySpent, type)} />}
             <Title title='Transaction'>
                 <Wrapper>
                     <Square type={type}/>

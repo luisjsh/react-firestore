@@ -10,7 +10,7 @@ import AddTransaction from './pages/add/transactions/add-transactions'
 import AddBankAccount from './pages/add/bank-account/add-bank-account'
 import Navbar from './components/navbar/navbar'
 import TransactionPage from "./pages/transaction-page/transactionPage.jsx"
-import BankAccountPage from "./pages/bankAccountPage.jsx"
+import BankAccountPage from "./pages/bank-account-page/bankAccountPage.jsx"
 
 function App() {
   return (

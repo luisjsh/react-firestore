@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import styled, {keyframes} from 'styled-components'
 
 const Appear = keyframes`
@@ -102,7 +101,7 @@ function CustomBankAccount({
             </SquareBankAccount>
             <div className="">
                 <h5 style={{margin: '0'}}>{name}</h5>
-                <span style={{margin: '0'}}>{type}</span>
+                <span style={{margin: '0', fontWeight: '300'}}>{type}</span>
             </div>
         </Wrapper>
     )

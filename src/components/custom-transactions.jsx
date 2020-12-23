@@ -18,10 +18,12 @@ const Appear = keyframes`
 const Wrapper = styled.div`
     display: grid;
     opacity: 0;
+    border: 1px solid white;
+    border-radius: 8px;
     grid-template-columns: .7fr 3fr; 
     align-items: center;
     justify-content: center;
-    animation: ${Appear} 1s 0.${props =>  props.animationDelay && props.animationDelay}0s forwards; 
+    animation: ${Appear} 1s 0.${props =>  props.animationDelay && props.animationDelay}0s forwards;    
 `
 
 const ContextWrapper = styled.div`

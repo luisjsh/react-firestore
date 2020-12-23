@@ -5,6 +5,7 @@ import Card from '../../../components/card'
 import PlusButton from '../../../components/add-button/add-button'
 import CustomTransactions from '../../../components/custom-transactions'
 import CustomBankAccount from '../../../components/custom-bank-account'
+import {LoadingSection} from '../../transaction-page/responsive/mobile-view' 
 
 const Container = styled.div`
     padding: 1em;
@@ -36,11 +37,10 @@ const HorizontableScroll = styled.div`
     display: grid;
     grid-auto-flow: column;
     grid-gap: 1em;
-    overflowX: auto;
     overflow: scroll;
 `
 
-const SectionWithTitle = ({title, children})=>{
+export const SectionWithTitle = ({title, children})=>{
     return (
         <>  
             <SectionHeader>
@@ -58,6 +58,26 @@ function DashboardMobile({state}) {
         latestTransactionsArray, 
         handleClickTransaction, 
         handleClickBankAccount} = state 
+
+    if(!moneyAvailable ||
+        !BankAccountsArray || 
+        !latestTransactionsArray || 
+        !handleClickTransaction || 
+        !handleClickBankAccount) return (
+            <Container>
+            <Card type='primary' amount={moneyAvailable}/>
+            <SectionWithTitle title='BANK ACCOUNTS'>
+                <HorizontableScroll>
+                    <LoadingSection />
+                </HorizontableScroll>
+            </SectionWithTitle>
+
+            <SectionWithTitle title='TRANSACTIONS'>
+                <LoadingSection />
+            </SectionWithTitle>
+            <PlusButton />
+        </Container>
+        )
 
     return (
         <Container>

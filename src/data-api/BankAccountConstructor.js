@@ -30,7 +30,6 @@ export default function BankAccount (currentUser){
 
   this.get = async () =>{
     let bankAccountArray = []
-
     try{
       await db.collection("bankAccount")
           .where("userId", "==", currentUser)
@@ -62,6 +61,36 @@ export default function BankAccount (currentUser){
     }
   }
 
+  this.getBankAccountProfileByName = async (name) =>{
+    let bankAccountData = {}
+    let transactions = []
+    try{
+      await db.collection("bankAccount")
+          .doc(name)
+          .get()
+          .then(function(querySnapshot) {
+            bankAccountData = querySnapshot.data()
+      });
+
+      await db.collection('bankAccount')
+      .doc(name)
+      .collection('transactions')
+      .orderBy('addedAt', 'desc')
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            transactions = [...transactions, doc.data()]
+        });
+      })
+
+      bankAccountData = {...bankAccountData, transactions: transactions}
+    } catch(e){
+      return 'error'
+    }
+
+    return bankAccountData
+  }
+
   this.getBankAccountsNames = async ()=>{
     let bankAccounts = await this.get()
     let bankAccountsNames = []
@@ -74,15 +103,17 @@ export default function BankAccount (currentUser){
     return bankAccountsNames
   }
 
+
   this.getMoneyAvailable = async ( )=>{
     let bankAccounts = await this.get()
     let moneyAvailableGlobal = 0
-    
     bankAccounts.forEach( ({moneyAvailable})=>{
       moneyAvailableGlobal = moneyAvailableGlobal + parseInt(moneyAvailable)
     })
     return moneyAvailableGlobal
   }
+
+
 
   this.setTransaction = async ({
     subject,
@@ -176,7 +207,6 @@ export default function BankAccount (currentUser){
         latestTransactionsArray = [...latestTransactionsArray , doc.data()]
       });
     })
-
     try{
       await db.collection('dashboard').doc('dashboard').set({
         BankAccountsArray,
@@ -187,7 +217,7 @@ export default function BankAccount (currentUser){
       return 'saved succesfully'
 
     }catch (e){
-        return 'error'
+      return 'error'
     }    
   }
 
@@ -222,9 +252,68 @@ export default function BankAccount (currentUser){
         transactionData = querySnapshot.data()
       })
     }catch(e){
-      console.log(e)
       transactionData = 'error'
     }
-    return transactionData
+    if(!transactionData) return 'not added'
+    if(transactionData) return transactionData
+  }
+
+  this.deleteTransaction = async (bankAccount, subject, moneySpent, type) => {
+    let bankAccountData, moneyOnAcccount
+ 
+    try {
+      bankAccountData = await this.getBankAccountByName(bankAccount)
+    } catch(e){
+      return 'error'
+    }
+
+    try{
+      let {moneyAvailable} = bankAccountData
+      let moneySpentInt = parseInt(moneySpent)
+
+      if(type === 'withdraw'){
+        moneyOnAcccount = moneySpentInt + moneyAvailable
+      }
+
+      if(type === 'deposit'){
+        moneyOnAcccount = moneySpentInt - moneyAvailable
+      }
+    }catch(e){
+      return 'error'
+    }
+  
+    try{
+      await db.collection("latestTransactions")
+      .doc(subject)
+      .get()
+      .then(async function(querySnapshot) {
+        await querySnapshot.ref.delete()
+      })
+    }catch(e){
+      return 'error'
+    }
+    
+    try{
+      await db.collection("bankAccount")
+      .doc(bankAccount)
+      .collection('transactions')
+      .doc(subject)
+      .get()
+      .then(async function(querySnapshot) {
+        await querySnapshot.ref.delete()
+      })
+    } catch(e){
+      return 'error'
+    }
+
+
+    this.set({
+      name: bankAccountData.name,
+      type: bankAccountData.type,
+      moneyAvailable: moneyOnAcccount,
+      userId: bankAccountData.userId
+    })
+
+    return await this.setDashboard(bankAccountData.userId)
   }
 } 

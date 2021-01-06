@@ -15,12 +15,9 @@ const Wrapper = styled.div`
 function Mobile({children}) {
     let history = useHistory()
 
-    return <>
-        <Wrapper>
+    return <Wrapper>
             <img src={Logo} alt='logo' width='43' height='50' onClick={()=>history.push('/dashboard')}/>
         </Wrapper>
-        {children}
-    </>
 }
 
 export default Mobile

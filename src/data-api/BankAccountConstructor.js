@@ -316,4 +316,9 @@ export default function BankAccount (currentUser){
 
     return await this.setDashboard(bankAccountData.userId)
   }
+
+  this.getTransactionsPagination = async ()=>{
+    
+  }
+
 } 

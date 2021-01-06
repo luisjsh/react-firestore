@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import Dashboard from '../../../pages/dashboard/dashboard'
 
 const Container = styled.div`
     display: grid;
@@ -9,13 +8,12 @@ const Container = styled.div`
     height: 100%;
 `
 
-function Desktop({children}) {
+function Desktop() {
     return (
         <Container>
             jksnksadsddnj
             <div>
 
-            {children}
             </div>
         </Container>
     )

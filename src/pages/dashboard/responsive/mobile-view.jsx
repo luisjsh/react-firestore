@@ -40,12 +40,12 @@ const HorizontableScroll = styled.div`
     overflow: scroll;
 `
 
-export const SectionWithTitle = ({title, children})=>{
+export const SectionWithTitle = ({title, clickName, handleClick, children})=>{
     return (
         <>  
             <SectionHeader>
                 <Title>{title ? title : ''}</Title>
-                <SeeMore tabIndex={0}>VIEW ALL</SeeMore>
+                <SeeMore name={clickName} onClick={()=>handleClick(clickName)} tabIndex={0}>VIEW ALL</SeeMore>
             </SectionHeader>
             {children}
         </>
@@ -57,7 +57,8 @@ function DashboardMobile({state}) {
         BankAccountsArray, 
         latestTransactionsArray, 
         handleClickTransaction, 
-        handleClickBankAccount} = state 
+        handleClickBankAccount,
+        handleRedirect} = state 
 
     if(!moneyAvailable ||
         !BankAccountsArray || 
@@ -66,13 +67,13 @@ function DashboardMobile({state}) {
         !handleClickBankAccount) return (
             <Container>
             <Card type='primary' amount={moneyAvailable}/>
-            <SectionWithTitle title='BANK ACCOUNTS'>
+            <SectionWithTitle title='BANK ACCOUNTS' clickName='bank-accounts' handleClick={handleRedirect}>
                 <HorizontableScroll>
                     <LoadingSection />
                 </HorizontableScroll>
             </SectionWithTitle>
 
-            <SectionWithTitle title='TRANSACTIONS'>
+            <SectionWithTitle title='TRANSACTIONS' clickName='transactions' handleClick={handleRedirect}>
                 <LoadingSection />
             </SectionWithTitle>
             <PlusButton />
@@ -82,7 +83,7 @@ function DashboardMobile({state}) {
     return (
         <Container>
             <Card type='primary' amount={moneyAvailable}/>
-            <SectionWithTitle title='BANK ACCOUNTS'>
+            <SectionWithTitle title='BANK ACCOUNTS' clickName='bank-accounts' handleClick={handleRedirect}>
                 <HorizontableScroll>
                 {
                     BankAccountsArray.map( (bankAccountData, id)=>(
@@ -96,7 +97,7 @@ function DashboardMobile({state}) {
                 </HorizontableScroll>
             </SectionWithTitle>
 
-            <SectionWithTitle title='TRANSACTIONS'>
+            <SectionWithTitle title='TRANSACTIONS' clickName='transactions' handleClick={handleRedirect}>
                 {
                     latestTransactionsArray.map( (transactionData, id)=>(
                         <CustomTransactions 

@@ -48,11 +48,15 @@ function Dashboard() {
         history.push(`/bank-account/${name}`)
     }
 
+    const handleRedirect =(name)=>{
+        history.push(`/${name}`)
+    }
 
     let state = {
         ...dashboardInformation,
         handleClickTransaction,
-        handleClickBankAccount
+        handleClickBankAccount,
+        handleRedirect
     }
 
     if(loading) return <LoadingPage />

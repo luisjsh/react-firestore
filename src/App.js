@@ -11,6 +11,8 @@ import AddBankAccount from './pages/add/bank-account/add-bank-account'
 import Navbar from './components/navbar/navbar'
 import TransactionPage from "./pages/transaction-page/transactionPage.jsx"
 import BankAccountPage from "./pages/bank-account-page/bankAccountPage.jsx"
+import TransactionPagination from "./pages/transactions-pagination/transaction-paginations"
+import BankAccountsPage from './pages/bankaccounts-page/bankaccounts-page'
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
                   <PrivateRoute exact path='/add/bank-account' component={AddBankAccount}/>
                   <PrivateRoute exact path='/transaction/:bankAccount-:id' component={TransactionPage}/>
                   <PrivateRoute exact path='/bank-account/:id' component={BankAccountPage}/>
+                  <PrivateRoute exact path='/transactions' component={TransactionPagination}/>
+                  <PrivateRoute exact path='/bank-accounts' component={BankAccountsPage}/>
                 </Route>
             </Switch>
           </AuthProvider>

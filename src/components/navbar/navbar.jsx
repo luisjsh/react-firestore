@@ -8,12 +8,11 @@ import Desktop from './responsive/desktop'
 function Navbar() {
     const width = useWidth()
 
-
-    if(width <= 425) return (
+    if(width <= 500) return (
         <Mobile />
     )
 
-    if(width> 425) return (
+    if(width> 500) return (
         <Desktop />
     )
 }

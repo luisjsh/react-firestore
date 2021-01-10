@@ -36,8 +36,7 @@ export default function BankAccount (currentUser){
           .get()
           .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-              let bankAccountData = doc.data()
-              bankAccountArray = [...bankAccountArray, bankAccountData]
+              bankAccountArray = [...bankAccountArray, doc.data()]
           });
       });
       return bankAccountArray     
@@ -317,8 +316,22 @@ export default function BankAccount (currentUser){
     return await this.setDashboard(bankAccountData.userId)
   }
 
-  this.getTransactionsPagination = async ()=>{
-    
+  this.getTransactions = async ()=>{
+    let transactionsArray = []
+    try{
+      await db.collection('latestTransactions')
+      .orderBy('addedAt', 'desc')
+      .where('userId', '==', currentUser)
+      .get()
+      .then(async function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          transactionsArray = [...transactionsArray, doc.data()]
+        });
+      })
+      return transactionsArray
+    } catch(e){
+      return 'error'
+    }
   }
 
 } 

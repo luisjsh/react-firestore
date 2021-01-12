@@ -107,13 +107,13 @@ const SelectedButtonSquare = styled.div`
 `
 
 
-const SquareButton =({name, pageName})=>{
+const SquareButton =({name, pageName, handleClick})=>{
     if(name !== pageName) return (
-        <UnselectedButtonSquare name={name}/>
+        <UnselectedButtonSquare onClick={()=>handleClick(name)} name={name}/>
     )
 
     if(name === pageName) return (
-        <SelectedButtonSquare name={name}/>
+        <SelectedButtonSquare onClick={()=>handleClick(name)} name={name}/>
     )
 }
 

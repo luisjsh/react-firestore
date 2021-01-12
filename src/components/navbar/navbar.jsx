@@ -1,5 +1,4 @@
-import React from 'react'
-
+import {useHistory} from 'react-router-dom'
 import useWidth from '../../helpers/useWidth'
 
 import Mobile from './responsive/mobile'
@@ -7,13 +6,22 @@ import Desktop from './responsive/desktop'
 
 function Navbar() {
     const width = useWidth()
+    const history = useHistory()
+
+    const handleRedirect =(name)=>{
+        history.push(`/${name}`)
+    }
+
+    const state = {
+        handleRedirect
+    }
 
     if(width <= 500) return (
-        <Mobile />
+        <Mobile {...state}/>
     )
 
     if(width> 500) return (
-        <Desktop />
+        <Desktop {...state}/>
     )
 }
 

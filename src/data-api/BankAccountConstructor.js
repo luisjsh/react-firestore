@@ -232,6 +232,7 @@ export default function BankAccount (currentUser){
         });
       })
     }catch(e){
+      console.log(e)
       dashboardData = "error"
     }
   

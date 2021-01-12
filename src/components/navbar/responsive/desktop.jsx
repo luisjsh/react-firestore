@@ -32,7 +32,7 @@ const Text = styled.p`
 
 
 
-function Desktop() {
+function Desktop({handleRedirect}) {
     const {id} = useParams()
 
     return (
@@ -44,9 +44,9 @@ function Desktop() {
            
             <ButtonWrapper>
 
-                <SquareButton name='dashboard' pageName={id}/>
-                <SquareButton name='transactions' pageName={id}/>
-                <SquareButton name='configuration' pageName={id}/>
+                <SquareButton name='dashboard' handleClick={handleRedirect} pageName={id}/>
+                <SquareButton name='transactions' handleClick={handleRedirect} pageName={id}/>
+                <SquareButton name='configuration' handleClick={handleRedirect} pageName={id}/>
             
             </ButtonWrapper>
         

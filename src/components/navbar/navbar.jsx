@@ -16,11 +16,11 @@ function Navbar() {
         handleRedirect
     }
 
-    if(width <= 500) return (
+    if(width <= 700) return (
         <Mobile {...state}/>
     )
 
-    if(width> 500) return (
+    if(width> 700) return (
         <Desktop {...state}/>
     )
 }

@@ -10,6 +10,17 @@ const Button = styled.button`
     transition: .3s;
     ${(props) =>{
      switch(props.type){  
+        case 'secundary':
+            return `
+                color: #5D4E7B; 
+                background: white;
+                border:1px solid white;
+                &:hover, &:focus-within{
+                    color: #5D4E7B;
+                    border:1px solid #5D4E7B;
+                }
+            `
+
         case 'not-choosed-success': 
             return `
                 color: #64B049; 

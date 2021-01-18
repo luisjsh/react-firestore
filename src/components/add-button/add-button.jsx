@@ -8,8 +8,8 @@ import WithdrawIcon from './withdraw.svg'
 
 const ButtonWrapper = styled.div`
     position: fixed;
-    bottom: 1em;
-    right: 10px;
+    bottom: ${props => props.bottom ? props.bottom : '1em'};
+    right: ${props => props.right ? props.right : '10px'};
     display: grid;
     grid-gap: 1em;
     grid-auto-flow: column;
@@ -26,6 +26,7 @@ const Button = styled.button`
     border-radius: 8px;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
 
     &:active{
         background-color: grey;
@@ -45,7 +46,7 @@ const OptionsWrapper = styled.div`
         clip-path: circle(100%);
     }
 
-    ${Button}:hover &{
+    ${ButtonWrapper}:hover &{
         clip-path: circle(100%);
     }
 `
@@ -58,6 +59,7 @@ const Span = styled.button`
     background: transparent;
     border-radius: 8px;
     transition: .5s;
+    cursor: pointer;
 
     &:hover{
         color: #5D4E7B;
@@ -98,7 +100,7 @@ const Square = styled.div`
     }}
 `
 
-function AddButton({type}) {
+function AddButton({type, bottom, right}) {
     const history = useHistory()
 
     const Redirect = (e)=>{
@@ -110,12 +112,12 @@ function AddButton({type}) {
     
 
     if(!type) return (
-        <ButtonWrapper>
+        <ButtonWrapper bottom={bottom} right={right}>
             <OptionsWrapper>
                 <Span name='transaction' onClick={Redirect}>Add Transactions</Span>
                 <Span name='bank-account' onClick={Redirect}>Add Bank account</Span>
             </OptionsWrapper>
-            <Button></Button>
+            <Button/>
         </ButtonWrapper>
     )
 }

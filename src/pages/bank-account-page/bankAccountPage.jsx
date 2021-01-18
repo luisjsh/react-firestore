@@ -41,7 +41,7 @@ function BankAccountPage() {
 
     if(width < 500) return <Mobile state={state}/>
 
-    if(width > 500) return <Desktop state={state}/>
+    if(width > 500) return <Desktop {...state}/>
 }
 
 export default BankAccountPage

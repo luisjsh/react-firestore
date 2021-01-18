@@ -29,7 +29,7 @@ function ErrorPage() {
         <Page>
             <Error>
                 <Title>Its seems something went wrong</Title>
-                <img src={ConnectionErrorImg} />
+                <img alt='connection error' src={ConnectionErrorImg} />
                 <CustomButton handleClick={()=>window.location.reload()}>Try again</CustomButton>
             </Error>
         </Page>

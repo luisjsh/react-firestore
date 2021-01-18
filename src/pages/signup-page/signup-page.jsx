@@ -39,6 +39,12 @@ const TitleTab = styled.div`
 
 const Span = styled.div`
   padding: 1em;
+  transition: .3s background;
+  &:hover, &:focus{
+    background: #eae6e6;
+    border-radius: 10px;
+    font-weight: bold;
+  }
 `
 
 const SignUp = ()=>{

@@ -63,14 +63,10 @@ function TransactionPage() {
         <LoadingPage />
     )
 
-    if(width < 500) return <Mobile state={state}/>
+    if(width <= 500) return <Mobile state={state}/>
     
 
-    if(width > 500) return <Desktop state={state}/>
-
-    return <div>
-        sadsajdnaskdjn
-    </div>
+    if(width > 500) return <Mobile state={state}/>
 }
 
 export default TransactionPage

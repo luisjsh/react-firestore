@@ -86,6 +86,20 @@ const Wrapper = styled.div`
     grid-gap: 1em;
     align-items: center;
     animation: ${Appear} 1s 0.${props =>  props.animationDelay && props.animationDelay}0s forwards; 
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover, &:focus {
+        background: #FFDBB9;
+        transform: translateY(10px);
+    }
+`
+
+const ContextWrapper = styled.div`
+    padding: .5em;
+    border-radius: 10px;
+    &:hover, &:focus {
+        background: #FFDBB9;
+    }
 `
 
 function CustomBankAccount({
@@ -99,10 +113,10 @@ function CustomBankAccount({
             <SquareBankAccount colors={`${Math.random()}`}>
                 {name[0]}    
             </SquareBankAccount>
-            <div className="">
+            <ContextWrapper>
                 <h5 style={{margin: '0'}}>{name}</h5>
                 <span style={{margin: '0', fontWeight: '300'}}>{type}</span>
-            </div>
+            </ContextWrapper>
         </Wrapper>
     )
 }

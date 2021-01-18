@@ -6,6 +6,7 @@ import PrivateRoute from './privateRoute'
 import Login from './pages/login/login.jsx'
 import SignUp from './pages/signup-page/signup-page.jsx'
 import Dashboard from './pages/dashboard/dashboard'
+import LandingPage from './pages/landing-page/landing-page'
 import AddTransaction from './pages/add/transactions/add-transactions'
 import AddBankAccount from './pages/add/bank-account/add-bank-account'
 import Navbar from './components/navbar/navbar'
@@ -19,6 +20,7 @@ function App() {
     <Router>
           <AuthProvider>
             <Switch>
+                <Route exact path='/' component={LandingPage}/>
 	              <Route exact path='/signup' component={SignUp}/>
 	              <Route exact path='/login' component={Login}/>
                 <Route path='/:id'>

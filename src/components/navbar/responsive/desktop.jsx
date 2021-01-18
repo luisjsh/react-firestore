@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 
 import Logo from '../../logo.png'
 import SquareButton from './square-button'
+import AddButton from '../../../components/add-button/add-button'
 
 const Container = styled.div`
     display: grid;
@@ -34,22 +35,20 @@ const Text = styled.p`
 
 function Desktop({handleRedirect}) {
     const {id} = useParams()
-
     return (
         <Container>
             <ButtonWrapper>
                 <img alt='Logo' src={Logo} width='35px' height='40px'/>
-                <Text>Finances</Text>
+                <Text onClick={()=>handleRedirect('dashboard')}>Finances</Text>
             </ButtonWrapper>
            
             <ButtonWrapper>
 
                 <SquareButton name='dashboard' handleClick={handleRedirect} pageName={id}/>
                 <SquareButton name='transactions' handleClick={handleRedirect} pageName={id}/>
-                <SquareButton name='configuration' handleClick={handleRedirect} pageName={id}/>
             
             </ButtonWrapper>
-        
+            {id === 'dashboard' && <AddButton bottom='2em' right='4em'/>}
           
         </Container>
     )

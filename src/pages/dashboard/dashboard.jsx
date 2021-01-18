@@ -14,6 +14,7 @@ function Dashboard() {
     const width = useWidth()
     const {currentUser} = useAuth()
     const history = useHistory()
+    console.log(width)
 
     const [loading, setLoading] = useState(true)
 
@@ -26,7 +27,6 @@ function Dashboard() {
 
     useEffect(()=>{
         setLoading(true)
-        
         let bankAccount = new BankAccountConstructor(currentUser.uid)
 
         let updateInformationAvailable = async ()=>{
@@ -64,10 +64,10 @@ function Dashboard() {
 
     if(dashboardInformation === 'error') return <ErrorPage/>
 
-    if(width <= 500) return <Mobile state={state}/>
+    if(width <= 700) return <Mobile state={state}/>
 
 
-    if(width > 500) return  <Desktop {...state}/>
+    if(width > 700) return  <Desktop {...state}/>
     
 }
 

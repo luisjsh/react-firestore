@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
 import Card from '../../../components/card'
-import {SectionWithTitle} from './mobile-view'
-import {LoadingSection} from '../../transaction-page/responsive/mobile-view' 
-import PlusButton from '../../../components/add-button/add-button'
 import CustomTransactions from '../../../components/custom-transactions'
 import CustomBankAccount from '../../../components/custom-bank-account'
 
@@ -14,7 +11,7 @@ const Page = styled.div`
 `
 const LeftSide = styled.div`
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 4em;
 `
 
 const Container = styled.div`
@@ -32,9 +29,43 @@ const RightSide = styled.div`
 
 const AlignRigth = styled.div`
     display:grid;
-    grid-gap: .5em;    
-    width: 400px;
+    grid-gap: .5em;
+    max-width: 400px;
 `
+const SectionHeader = styled.div`
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    font-size: 13px;
+    margin: 0 0 20px;
+    cursor: pointer;
+`
+
+const Title = styled.div`
+    font-weight: bold;
+    color: #B1B1B1;
+`
+
+const SeeMore = styled.div`
+    color: #494949;
+    text-align: right; 
+
+    &:hover, &:focus{
+        text-decoration: underline;
+    }
+`
+const SectionWithTitle = ({title, clickName, handleClick, children})=>{
+    return (
+        <div>  
+            <SectionHeader>
+                <Title>{title ? title : ''}</Title>
+                <SeeMore name={clickName} onClick={()=>handleClick(clickName)} tabIndex={0}>VIEW ALL</SeeMore>
+            </SectionHeader>
+            <div style={{display: 'grid', gridGap: '1em'}}>
+                {children}    
+            </div>
+        </div>
+    )
+}
 
 function DashboardDesktop({
     latestTransactionsArray,

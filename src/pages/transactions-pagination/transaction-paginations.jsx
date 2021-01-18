@@ -14,8 +14,8 @@ function TransactionPagination() {
     const history = useHistory()
     const {currentUser} = useAuth()
     
-
     useEffect(() => {
+        document.title = `Finances - transactions`
         const getTransactions=async ()=>{
             let userData = new BankAccountConstructor(currentUser.uid)
             setTransactionArray([...await userData.getTransactions()])
@@ -33,7 +33,7 @@ function TransactionPagination() {
     }
     if(width < 500) return <Mobile {...state}/>
 
-    if(width >= 500) return <Desktop state={state}/>
+    if(width >= 500) return <Desktop {...state}/>
 }
 
 export default TransactionPagination

@@ -10,6 +10,7 @@ import CustomButton from '../../components/custom-button'
 
 const Container = styled.div`
     max-width: 400px;
+    width: 100%;
     padding: 1em;
     display: grid;
     align-items: center;
@@ -38,7 +39,13 @@ const ErrorTab = styled.div`
 `
 
 const Span = styled.div`
-  padding: 1em 0;
+    border-radius: 10px;
+    padding: 1em;
+    transition: .3s background;
+    &:hover, &:focus{
+        background: #eae6e6;
+        font-weight: bold;
+}
 `
 function Login() {
 
@@ -78,7 +85,7 @@ function Login() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}  style={{position: 'absolute', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
             <Container>
                 <TitleTab>Login</TitleTab>
                 {error !== '' && <ErrorTab>{error}</ErrorTab>}

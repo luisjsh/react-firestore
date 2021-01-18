@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `
 
 
-function Mobile({children}) {
+function Mobile() {
     let history = useHistory()
 
     return <Wrapper>

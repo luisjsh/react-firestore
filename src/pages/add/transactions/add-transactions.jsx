@@ -65,7 +65,7 @@ function AddTransaction() {
     const history = useHistory()
     
     useEffect( ()=>{
-        document.title = `Finances - add transaction`
+        document.title = `Finances - Add transaction`
         let bankAccount = new BankAccountConstructor(currentUser.uid)
         let getBankAccountNames = async ()=>{
             setbankAccountsNamesLists(await bankAccount.getBankAccountsNames())

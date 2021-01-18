@@ -23,7 +23,8 @@ const Wrapper = styled.div`
     grid-template-columns: .7fr 3fr; 
     align-items: center;
     justify-content: center;
-    animation: ${Appear} 1s 0.${props =>  props.animationDelay && props.animationDelay}0s forwards;    
+    animation: ${Appear} 1s 0.${props =>  props.animationDelay && props.animationDelay}0s forwards;  
+    cursor: pointer;  
 `
 
 const ContextWrapper = styled.div`
@@ -34,6 +35,10 @@ const ContextWrapper = styled.div`
     padding: .5em;
     font-weight: bold;
     font-size: 15px;
+    border-radius: 10px;
+    &:hover, &:focus {
+        background: #FFDBB9;
+    }
 `
 
 const SubjectWrapper = styled.div`

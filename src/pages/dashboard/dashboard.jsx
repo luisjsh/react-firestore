@@ -14,7 +14,7 @@ function Dashboard() {
     const width = useWidth()
     const {currentUser} = useAuth()
     const history = useHistory()
-    console.log(width)
+    
 
     const [loading, setLoading] = useState(true)
 

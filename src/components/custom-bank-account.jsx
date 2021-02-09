@@ -109,7 +109,7 @@ function CustomBankAccount({
     handleClickBankAccount
 }) {
     return (
-        <Wrapper animationDelay={animationDelay} onClick={()=>handleClickBankAccount(name)} tabIndex={0}>
+        <Wrapper animationDelay={animationDelay} onClick={()=>handleClickBankAccount && handleClickBankAccount(name)} tabIndex={0}>
             <SquareBankAccount colors={`${Math.random()}`}>
                 {name[0]}    
             </SquareBankAccount>

@@ -41,11 +41,13 @@ const SecundaryAmount = styled.div`
     text-overflow: ellipsis;
 `
 
-function Card({type, amount}){
+function Card({amount}){
     const [displayedAmount, setDisplayedAmount] = useState(0)
 
     useEffect(()=>{
-        setDisplayedAmount(splitNumber(amount))        
+        setDisplayedAmount(splitNumber(amount))     
+        
+        return ()=>setDisplayedAmount(0)
     }, [amount])
 
     return (

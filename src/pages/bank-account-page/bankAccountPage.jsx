@@ -28,7 +28,7 @@ function BankAccountPage() {
         return () => {
             setBankAccountData([])
         }
-    }, [id])
+    }, [history, id])
 
     const handleClick = (bankAccountName, transactionName)=>{
         history.push(`/transaction/${bankAccountName ? bankAccountName : 'no-name'}-${transactionName ? transactionName : 'no-name'}`)

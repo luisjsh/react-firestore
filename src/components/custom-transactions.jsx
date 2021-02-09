@@ -86,7 +86,7 @@ function CustomTransactions({
 }) {
     
     return (
-        <Wrapper onClick={()=>handleClickTransaction(bankAccountName, subject)} animationDelay={animationDelay} tabIndex={0}>
+        <Wrapper onClick={()=>handleClickTransaction && handleClickTransaction(bankAccountName, subject)} animationDelay={animationDelay} tabIndex={0}>
             <SquareWithIcon type={type}/>
             <ContextWrapper>
                 <SubjectWrapper>

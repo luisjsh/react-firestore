@@ -33,7 +33,7 @@ const SeeMore = styled.div`
     }
 `
 
-const HorizontableScroll = styled.div`
+export const HorizontableScroll = styled.div`
     display: grid;
     grid-auto-flow: column;
     grid-gap: 1em;

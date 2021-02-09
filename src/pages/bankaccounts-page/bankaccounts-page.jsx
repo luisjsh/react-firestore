@@ -24,7 +24,7 @@ function BankAccounts() {
         return () => {
             setBankAccountsArray([])
         }
-    }, [])
+    }, [currentUser.uid])
     
     const handleClickBankAccount = (name) => {
         history.push(`/bank-account/${name}`)

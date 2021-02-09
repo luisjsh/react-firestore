@@ -7,7 +7,6 @@ import BankAccountConstructor from '../../data-api/BankAccountConstructor'
 
 import LoadingPage from '../../components/loading/loading'
 import Mobile from './responsive/mobile-view.jsx'
-import Desktop from './responsive/desktop-view.jsx'
 
 
 function TransactionPage() {
